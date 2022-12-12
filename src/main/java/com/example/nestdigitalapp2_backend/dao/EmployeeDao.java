@@ -18,4 +18,8 @@ public interface EmployeeDao extends CrudRepository<Employee,Integer> {
     @Transactional
     @Query(value = "DELETE FROM `employees` WHERE `id`=:id",nativeQuery = true)
     void deleteemp(@Param("id") Integer id);
+
+    @Query(value = "SELECT `id`, `address`, `designation`, `email`, `empcode`, `name`, `password`, `phno`, `username` FROM `employees` WHERE  `username`=:username AND`password`=:password ",nativeQuery = true)
+    List<Employee> emplogin(@Param("username") String username, @Param("password") String password);
+
 }
