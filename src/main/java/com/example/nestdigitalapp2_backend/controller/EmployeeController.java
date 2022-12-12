@@ -73,5 +73,28 @@ public class EmployeeController {
     }
 
 
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/emplogin",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> emplogin(@RequestBody Employee e)
+    {
+        String username=String.valueOf(e.getUsername());
+        String password=String.valueOf(e.getPassword());
+        // return (List<Customers>) dao1.login(username,password);
+        List<Employee> result=(List<Employee>) dao.emplogin(username,password);
+        HashMap<String,String> st=new HashMap<>();
+        if (result.size()==0)
+        {
+            st.put("status","failed");
+        }
+        else
+        {
+            String id=result.get(0).getEmpcode();
+            st.put("userid",String.valueOf(id));
+            st.put("status","success");
+        }
+        return st;
+
+    }
+
 
 }
