@@ -22,4 +22,7 @@ public interface EmployeeDao extends CrudRepository<Employee,Integer> {
     @Query(value = "SELECT `id`, `address`, `designation`, `email`, `empcode`, `name`, `password`, `phno`, `username` FROM `employees` WHERE  `username`=:username AND`password`=:password ",nativeQuery = true)
     List<Employee> emplogin(@Param("username") String username, @Param("password") String password);
 
+    @Query(value = "SELECT `id`, `address`, `designation`, `email`, `empcode`, `name`, `password`, `phno`, `username` FROM `employees` WHERE `empcode`=:empcode",nativeQuery = true)
+    List<Employee> profileview(@Param("empcode") String empcode);
+
 }
