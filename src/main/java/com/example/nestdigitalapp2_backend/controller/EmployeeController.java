@@ -97,4 +97,15 @@ public class EmployeeController {
     }
 
 
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/profileview",consumes = "application/json",produces = "application/json")
+    public List<Employee> profileview(@RequestBody Employee c)
+    {
+        String empcode=String.valueOf(c.getEmpcode());
+        System.out.println(empcode);
+        return (List<Employee>) dao.profileview(c.getEmpcode());
+
+    }
+
+
 }
