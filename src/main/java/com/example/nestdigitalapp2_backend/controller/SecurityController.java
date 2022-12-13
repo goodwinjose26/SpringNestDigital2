@@ -34,4 +34,26 @@ public class SecurityController {
         return (List<Security>) dao.findAll();
     }
 
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/seclogin",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> seclogin(@RequestBody Security s)
+    {
+        String username=String.valueOf(s.getUsername());
+        String password=String.valueOf(s.getPassword());
+        List<Security> result=(List<Security>) dao.seclogin(username,password);
+        HashMap<String,String> st=new HashMap<>();
+        if (result.size()==0)
+        {
+            st.put("status","failed");
+        }
+        else
+        {
+            String id=result.get(0).getSeccode();
+            st.put("userid",String.valueOf(id));
+            st.put("status","success");
+        }
+        return st;
+
+    }
 }
