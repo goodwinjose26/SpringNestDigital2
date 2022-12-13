@@ -56,4 +56,15 @@ public class SecurityController {
         return st;
 
     }
+
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/secprofileview",consumes = "application/json",produces = "application/json")
+    public List<Security> secprofileview(@RequestBody Security s)
+    {
+        String seccode=String.valueOf(s.getSeccode());
+        System.out.println(seccode);
+        return (List<Security>) dao.secprofileview(s.getSeccode());
+
+    }
 }
